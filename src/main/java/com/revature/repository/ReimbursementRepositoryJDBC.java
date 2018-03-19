@@ -2,13 +2,16 @@ package com.revature.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.revature.model.Employee;
 import com.revature.model.Reimbursement;
+import com.revature.model.ReimbursementStatus;
 import com.revature.model.ReimbursementType;
 import com.revature.util.ConnectionUtil;
 
@@ -40,7 +43,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 				return true;
 			}
 		} catch (SQLException e) {
-			logger.warn("Exception creating a new reimbursement", e);
+			logger.info("Exception creating a new reimbursement", e);
 		}
 		return false;
 	}
@@ -74,7 +77,34 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 	@Override
 	public Reimbursement select(int reimbursementId) {
 		
-		try(){
+		try(Connection connection = ConnectionUtil.getConnection()){
+			
+			String sql ="SELECT R.R_ID, R.R_REQUESTED, R.R_RESOLVED, R.R_AMOUNT, R.R_DESCRIPTION,"
+						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
+						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
+						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
+						+"WHERE R.R_ID = ?";
+			
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, reimbursementId);
+			
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()){
+				return new Reimbursement(
+						result.getInt("R.R_ID"),
+						result.getTimestamp("R.R_REQUESTED"),
+						result.getTimestamp("R.R_RESOLVED"),
+						result.getDouble("R.R_AMOUNT"),
+						result.getString("R.R_DESCRIPTION"),
+						result.getObject("R.R_RECEIPT"),
+						new Employee(result.getInt("R.EMPLOYEE_ID")),
+						new Employee(result.getInt("R.MANAGER_ID")),
+						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
+						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
+						result.getString("RT.RT_TYPE")
+						);
+			}
 			
 		}
 		catch(SQLException e){

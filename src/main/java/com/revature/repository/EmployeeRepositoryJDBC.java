@@ -38,7 +38,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 				return true;
 			}
 		} catch (SQLException e) {
-			logger.warn("Exception creating a new employee", e);
+			logger.info("Exception creating a new employee", e);
 		}
 		return false;
 	}
@@ -62,7 +62,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 			statement.setInt(++parameterIndex, employee.getEmployeeRole().getId());
 						
 		}catch(SQLException e){
-			logger.trace("An error occured when updating Employee information");
+			logger.info("An error occured when updating Employee information");
 		}
 		
 		return false;
@@ -75,7 +75,9 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 		try(Connection connection = ConnectionUtil.getConnection()) {
 			int parameterIndex = 0;
 //need to create the join table here to get the employee role type
-			String sql = "SELECT U.U_ID, U.U_FIRSTNAME, U.U_LASTNAME, U.U_USERNAME, U.U_PASSWORD, U.U_EMAIL ,U.UR_ID, UR.UR_TYPE FROM USER_T U FULL OUTER JOIN USER_ROLE UR ON U.UR_ID = UR.UR_ID WHERE U_ID = ? ";
+			String sql = "SELECT U.U_ID, U.U_FIRSTNAME, U.U_LASTNAME, U.U_USERNAME, U.U_PASSWORD, U.U_EMAIL ,U.UR_ID,"
+						+ "UR.UR_TYPE FROM USER_T U FULL OUTER JOIN USER_ROLE UR ON U.UR_ID = UR.UR_ID WHERE U_ID = ? ";
+			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			
 			statement.setInt(++parameterIndex, employeeId);
@@ -94,7 +96,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 			}
 		} catch (SQLException e) {
 			
-			logger.warn("Exception selecting a User using Employee I.D.", e);
+			logger.info("Exception selecting a User using Employee I.D.", e);
 		}
 		return new Employee();
 	}
@@ -123,7 +125,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 						);
 			}
 		} catch (SQLException e) {
-			logger.warn("Exception selecting a User using Username.", e);
+			logger.info("Exception selecting a User using Username.", e);
 		}
 		return new Employee();
 	}
@@ -153,7 +155,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 
 			return (Set<Employee>) employeeList;
 		} catch (SQLException e) {
-			logger.warn("Exception selecting all Users", e);
+			logger.info("Exception selecting all Users", e);
 		} 
 		return new HashSet<>();
 	}	
