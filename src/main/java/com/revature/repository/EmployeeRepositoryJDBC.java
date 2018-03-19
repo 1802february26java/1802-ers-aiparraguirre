@@ -60,10 +60,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 			statement.setString(++parameterIndex, employee.getPassword());
 			statement.setString(++parameterIndex, employee.getEmail());
 			statement.setInt(++parameterIndex, employee.getEmployeeRole().getId());
-			
-			//statement.setInt(++parameterIndex, employee.getEmployeeRole().getRole());
-			
-			
+						
 		}catch(SQLException e){
 			logger.trace("An error occured when updating Employee information");
 		}
