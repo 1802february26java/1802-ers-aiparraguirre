@@ -52,19 +52,20 @@ public interface EmployeeRepository {
 	 * Executes and returns a password hash for an employee.
 	 */
 	public String getPasswordHash(Employee employee);
-	
+	/*
 	/**
 	 * Inserts a new password token.
-	 */
+	 
 	public boolean insertEmployeeToken(EmployeeToken employeeToken);
 	
 	/**
 	 * Deletes a password token from the database.
-	 */
+	 
 	public boolean deleteEmployeeToken(EmployeeToken employeeToken);
 	
 	/**
 	 * Returns a specific password token.
-	 */
+	 
 	public EmployeeToken selectEmployeeToken(EmployeeToken employeeToken);
+	 */
 }
