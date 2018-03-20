@@ -100,7 +100,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						result.getString("R.R_DESCRIPTION"),
 						result.getObject("R.R_RECEIPT"),
 						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
+						new Employee.setId(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
 						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
 						result.getString("RT.RT_TYPE")
@@ -125,7 +125,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
 						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
 						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE R.R_ID = ?";
+						+"WHERE R.EMPLOYEE_ID = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(++parameterIndex, employeeId);
@@ -144,7 +144,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						result.getString("R.R_DESCRIPTION"),
 						result.getObject("R.R_RECEIPT"),
 						new Employee(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
+						new Employee.setId(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
 						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
 						result.getString("RT.RT_TYPE")
@@ -173,7 +173,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
 						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
 						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE R.R_ID = ?";
+						+"WHERE R.EMPLOYEE_ID = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(++parameterIndex, employeeId);
@@ -228,7 +228,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			Set<Employee> employeePendingList = new HashSet<>();
 			
 			while(result.next()){
-					return employeePendingList.addAll(new Reimbursement(
+					return employeePendingList.add(new Reimbursement(
 						result.getInt("R.R_ID"),
 						result.getTimestamp("R.R_REQUESTED"),
 						result.getTimestamp("R.R_RESOLVED"),
@@ -269,7 +269,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			Set<Employee> employeePendingList = new HashSet<>();
 			
 			while(result.next()){
-					return employeePendingList.addAll(new Reimbursement(
+					return employeePendingList.add(new Reimbursement(
 						result.getInt("R.R_ID"),
 						result.getTimestamp("R.R_REQUESTED"),
 						result.getTimestamp("R.R_RESOLVED"),
