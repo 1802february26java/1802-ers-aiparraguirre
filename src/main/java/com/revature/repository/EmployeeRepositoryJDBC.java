@@ -17,6 +17,14 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 
 	private static Logger logger = Logger.getLogger(EmployeeRepositoryJDBC.class);
 	
+	private static EmployeeRepository employeeRepository = new EmployeeRepositoryJDBC();
+	
+	private EmployeeRepositoryJDBC(){}
+	
+	public static EmployeeRepository getInstance(){
+		return employeeRepository;
+	}
+	
 	@Override
 	public boolean insert(Employee employee) {
 		

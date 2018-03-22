@@ -21,6 +21,14 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 	private static Logger logger = Logger.getLogger(ReimbursementRepositoryJDBC.class);
 	
+	private static ReimbursementRepository reimbursementRepository = new ReimbursementRepositoryJDBC();
+	
+	private ReimbursementRepositoryJDBC(){}
+	
+	public static ReimbursementRepository getInstance(){
+		return reimbursementRepository;
+	}
+	
 	@Override
 	public boolean insert(Reimbursement reimbursement) {
 		try(Connection connection = ConnectionUtil.getConnection()) {
@@ -30,7 +38,6 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 
-			//Set attributes to be inserted
 			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getRequested()));
 			statement.setTimestamp(++parameterIndex, Timestamp.valueOf(reimbursement.getResolved()));
 			statement.setDouble(++parameterIndex, reimbursement.getAmount());
@@ -80,11 +87,11 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 		
 		try(Connection connection = ConnectionUtil.getConnection()){
 			
-			String sql ="SELECT R.R_ID, R.R_REQUESTED, R.R_RESOLVED, R.R_AMOUNT, R.R_DESCRIPTION,"
-						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
-						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
-						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE R.R_ID = ?";
+			String sql ="SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R" 
+							+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
+							+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
+							+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
+							+" WHERE R.R_ID = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, reimbursementId);
@@ -99,8 +106,8 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
 						result.getObject("R.R_RECEIPT"),
-						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.MANAGER_ID")),
+						new EmployeeRepositoryJDBC.getInstance(result.getInt("R.EMPLOYEE_ID")),
+						new Employee(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
 						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
 						result.getString("RT.RT_TYPE")
@@ -121,11 +128,11 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			
 			int parameterIndex=0;
 			String pending = "PENDING";
-			String sql ="SELECT R.R_ID, R.R_REQUESTED, R.R_RESOLVED, R.R_AMOUNT, R.R_DESCRIPTION,"
-						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
-						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
-						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE R.EMPLOYEE_ID = ?";
+			String sql ="SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R" 
+					+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
+					+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
+					+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
+					+" WHERE R.EMPLOYEE_ID = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(++parameterIndex, employeeId);
@@ -169,11 +176,11 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			int parameterIndex=0;
 			String status = "APPROVED";
 		
-			String sql ="SELECT R.R_ID, R.R_REQUESTED, R.R_RESOLVED, R.R_AMOUNT, R.R_DESCRIPTION,"
-						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
-						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
-						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE R.EMPLOYEE_ID = ?";
+			String sql ="SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R" 
+						+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
+						+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
+						+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
+						+" WHERE R.EMPLOYEE_ID = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(++parameterIndex, employeeId);
@@ -215,11 +222,11 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			
 			String status = "PENDING";
 		
-			String sql ="SELECT R.R_ID, R.R_REQUESTED, R.R_RESOLVED, R.R_AMOUNT, R.R_DESCRIPTION,"
-						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
-						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
-						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE RS.RS_STATUS = ?";
+			String sql ="SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R" 
+						+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
+						+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
+						+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
+						+" WHERE RS.RS_STATUS = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(0, status);
@@ -256,11 +263,11 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			
 			String status = "APPROVED";
 		
-			String sql ="SELECT R.R_ID, R.R_REQUESTED, R.R_RESOLVED, R.R_AMOUNT, R.R_DESCRIPTION,"
-						+" R.R_RECEIPT, R.EMPLOYEE_ID, R.MANAGER_ID, RS.RS_RS_ID,RS.RS_STATUS, RT.RT_ID,RT.RT_TYPE "
-						+"FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
-						+"FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
-						+"WHERE RS.RS_STATUS = ?";
+			String sql ="SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R" 
+						+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
+						+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
+						+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
+						+" WHERE RS.RS_STATUS = ?";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(0, status);
@@ -276,7 +283,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
 						result.getObject("R.R_RECEIPT"),
-						new Employee(result.getInt("R.EMPLOYEE_ID")),
+						new EmployeeRepositoryJDBC.getInstance(result.getInt("R.EMPLOYEE_ID")),
 						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
 						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
