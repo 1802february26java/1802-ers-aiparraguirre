@@ -17,11 +17,11 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 
 	private static Logger logger = Logger.getLogger(EmployeeRepositoryJDBC.class);
 	
-	private static EmployeeRepository employeeRepository = new EmployeeRepositoryJDBC();
+	private static EmployeeRepositoryJDBC employeeRepository = new EmployeeRepositoryJDBC();
 	
 	private EmployeeRepositoryJDBC(){}
 	
-	public static EmployeeRepository getInstance(){
+	public static EmployeeRepositoryJDBC getInstance(){
 		return employeeRepository;
 	}
 	

@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.revature.model.Employee;
+
 import com.revature.model.Reimbursement;
 import com.revature.model.ReimbursementStatus;
 import com.revature.model.ReimbursementType;
@@ -34,7 +34,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 		try(Connection connection = ConnectionUtil.getConnection()) {
 			int parameterIndex = 0;
 		
-			String sql = "INSERT INTO REIMBURSEMENT VALUES(NULL,?,?,?,?,NULL,?,?,?,?)";
+			String sql = "INSERT INTO REIMBURSEMENT VALUES(NULL,?,?,?,?,NULL,?,NULL,?,?)";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -43,7 +43,6 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			statement.setDouble(++parameterIndex, reimbursement.getAmount());
 			statement.setString(++parameterIndex, reimbursement.getDescription());
 			statement.setInt(++parameterIndex, reimbursement.getRequester().getId());
-			statement.setInt(++parameterIndex, reimbursement.getApprover().getId());
 			statement.setInt(++parameterIndex, reimbursement.getStatus().getId());
 			statement.setInt(++parameterIndex, reimbursement.getType().getId());
 
@@ -98,19 +97,17 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			
 			ResultSet result = statement.executeQuery();
 			
-			while(result.next()){
+			if(result.next()){
 				return new Reimbursement(
 						result.getInt("R.R_ID"),
-						result.getTimestamp("R.R_REQUESTED"),
-						result.getTimestamp("R.R_RESOLVED"),
+						result.getTimestamp("R.R_REQUESTED").toLocalDateTime(),
+						result.getTimestamp("R.R_RESOLVED").toLocalDateTime(),
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
-						result.getObject("R.R_RECEIPT"),
-						new EmployeeRepositoryJDBC.getInstance(result.getInt("R.EMPLOYEE_ID")),
-						new Employee(result.getInt("R.MANAGER_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
-						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
-						result.getString("RT.RT_TYPE")
+						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE"))
 						);
 			}
 			
@@ -138,26 +135,25 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			statement.setInt(++parameterIndex, employeeId);
 			ResultSet result = statement.executeQuery();
 			
-			Set<Employee> employeePendingList = new HashSet<>();
+			Set<Reimbursement> employeePendingList = new HashSet<>();
 			
 			while(result.next()){
 				
 				if(result.getString("RS.RS_STATUS").equals(pending)){
-					return employeePendingList.add(new Reimbursement(
+					employeePendingList.add(new Reimbursement(
 						result.getInt("R.R_ID"),
-						result.getTimestamp("R.R_REQUESTED"),
-						result.getTimestamp("R.R_RESOLVED"),
+						result.getTimestamp("R.R_REQUESTED").toLocalDateTime(),
+						null,
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
-						result.getObject("R.R_RECEIPT"),
-						new Employee(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.MANAGER_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
-						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
-						result.getString("RT.RT_TYPE")
+						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE"))
 						)
 					);
 				}
+				return employeePendingList;
 			}
 			
 		}
@@ -186,26 +182,26 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			statement.setInt(++parameterIndex, employeeId);
 			ResultSet result = statement.executeQuery();
 			
-			Set<Employee> reimbursementApprovedList = new HashSet<>();
+			Set<Reimbursement> reimbursementApprovedList = new HashSet<>();
 			
 			while(result.next()){
 				
 				if(result.getString("RS.RS_STATUS").equals(status)){
-					return reimbursementApprovedList.add(new Reimbursement(
+					reimbursementApprovedList.add(new Reimbursement(
 						result.getInt("R.R_ID"),
-						result.getTimestamp("R.R_REQUESTED"),
-						result.getTimestamp("R.R_RESOLVED"),
+						result.getTimestamp("R.R_REQUESTED").toLocalDateTime(),
+						result.getTimestamp("R.R_RESOLVED").toLocalDateTime(),
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
-						result.getObject("R.R_RECEIPT"),
-						new Employee(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
-						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
-						result.getString("RT.RT_TYPE")
+						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE"))
+						
 						)
 					);
 				}
+				return reimbursementApprovedList;
 			}
 			
 		}
@@ -232,24 +228,23 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			statement.setString(0, status);
 			ResultSet result = statement.executeQuery();
 			
-			Set<Employee> employeePendingList = new HashSet<>();
+			Set<Reimbursement> employeePendingList = new HashSet<>();
 			
 			while(result.next()){
-					return employeePendingList.add(new Reimbursement(
+					employeePendingList.add(new Reimbursement(
 						result.getInt("R.R_ID"),
-						result.getTimestamp("R.R_REQUESTED"),
-						result.getTimestamp("R.R_RESOLVED"),
+						result.getTimestamp("R.R_REQUESTED").toLocalDateTime(),
+						null,
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
-						result.getObject("R.R_RECEIPT"),
-						new Employee(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
-						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
-						result.getString("RT.RT_TYPE")
+						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE"))
 						)
 					);
 				}
+			return employeePendingList;
 			}catch(SQLException e){
 				logger.info("Exception selecting all Reimbursements that are Pending",e);
 		}
@@ -273,24 +268,23 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 			statement.setString(0, status);
 			ResultSet result = statement.executeQuery();
 			
-			Set<Employee> employeePendingList = new HashSet<>();
+			Set<Reimbursement> employeeFinalizedList = new HashSet<>();
 			
 			while(result.next()){
-					return employeePendingList.add(new Reimbursement(
+					    employeeFinalizedList.add(new Reimbursement(
 						result.getInt("R.R_ID"),
-						result.getTimestamp("R.R_REQUESTED"),
-						result.getTimestamp("R.R_RESOLVED"),
+						result.getTimestamp("R.R_REQUESTED").toLocalDateTime(),
+						result.getTimestamp("R.R_RESOLVED").toLocalDateTime(),
 						result.getDouble("R.R_AMOUNT"),
 						result.getString("R.R_DESCRIPTION"),
-						result.getObject("R.R_RECEIPT"),
-						new EmployeeRepositoryJDBC.getInstance(result.getInt("R.EMPLOYEE_ID")),
-						new Employee.setId(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.EMPLOYEE_ID")),
+						EmployeeRepositoryJDBC.getInstance().select(result.getInt("R.MANAGER_ID")),
 						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS.RS_STATUS")),
-						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE")),
-						result.getString("RT.RT_TYPE")
+						new ReimbursementType(result.getInt("RT.RT_ID"), result.getString("RT.RT_TYPE"))
 						)
 					);
 				}
+			return employeeFinalizedList;
 			}catch(SQLException e){
 				logger.info("Exception Selecting All Reimbursements that are approved",e);
 		}
