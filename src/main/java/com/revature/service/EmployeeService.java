@@ -61,10 +61,12 @@ public interface EmployeeService {
 	 */
 	public boolean updatePassword(Employee employee);
 	
+	
+	
 	/**
 	 * Return whether a username is available or not.
 	 */
-	public boolean isUsernameTaken(Employee employee);
+	//public boolean isUsernameTaken(Employee employee);
 	
 	/**
 	 * Creates a new password token in the database.
@@ -74,15 +76,15 @@ public interface EmployeeService {
 	 * An email should be sent to the employee providing a link to the password recovery
 	 * view with the specific token.
 	 */
-	public boolean createPasswordToken(Employee employee);
+	//public boolean createPasswordToken(Employee employee);
 	
 	/**
 	 * Deletes a password token from the database.
 	 */
-	public boolean deletePasswordToken(EmployeeToken employeeToken);
+	//public boolean deletePasswordToken(EmployeeToken employeeToken);
 	
 	/**
 	 * Returns whether a password token has expired or not.
 	 */
-	public boolean isTokenExpired(EmployeeToken employeeToken);
+	//public boolean isTokenExpired(EmployeeToken employeeToken);
 }
