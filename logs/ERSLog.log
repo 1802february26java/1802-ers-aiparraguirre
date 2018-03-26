@@ -1,0 +1,23 @@
+2018-03-26 13:54:44 TRACE EmployeeRepositoryJDBC:217 - [Employee [id=29, firstName=Brian, lastName=Loots, username=BL134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=23, firstName=Bob, lastName=Tully, username=BT134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=30, firstName=James, lastName=Dooley, username=JD134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=32, firstName=Jack, lastName=Dominguez, username=JaD134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=1, firstName=PETER, lastName=ALAGNA, username=PALAGNAJR, password=CFE456D83392A087DAF9DF95D5E18366, email=PETER.ALAGNA@REVATURE.COM, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=25, firstName=Carl, lastName=Rogers, username=CR134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=31, firstName=Noreen, lastName=Mcnair, username=NM134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=2, type=MANAGER]], Employee [id=42, firstName=Jack, lastName=Jill, username=JJ123, password=EEFF8EEE706C3C104F9AB13003428560, email=myth2486@gmail.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=21, firstName=Paul, lastName=Farley, username=PF134, password=EEFF8EEE706C3C104F9AB13003428560, email=paul@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=24, firstName=Sonia, lastName=Jills, username=SJ134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=27, firstName=John, lastName=Luke, username=JL134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=26, firstName=James, lastName=Tanker, username=JT134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=28, firstName=Amber, lastName=Steal, username=AS134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]]]
+2018-03-26 13:55:29 INFO  EmployeeRepositoryJDBC:136 - Exception selecting a User using Username.
+java.sql.SQLSyntaxErrorException: ORA-00904: "USERNAME": invalid identifier
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:776)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:897)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1034)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3867)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1502)
+	at com.revature.repository.EmployeeRepositoryJDBC.select(EmployeeRepositoryJDBC.java:122)
+	at com.revature.repository.EmployeeRepositoryJDBC.main(EmployeeRepositoryJDBC.java:217)
+2018-03-26 13:55:29 TRACE EmployeeRepositoryJDBC:217 - Employee [id=0, firstName=null, lastName=null, username=null, password=null, email=null, userRole=null]
+2018-03-26 13:57:15 TRACE EmployeeRepositoryJDBC:219 - Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]]
+2018-03-26 13:58:20 TRACE EmployeeRepositoryJDBC:220 - Employee [id=0, firstName=null, lastName=null, username=null, password=null, email=null, userRole=null]

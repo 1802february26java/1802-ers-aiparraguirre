@@ -115,7 +115,9 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 		try(Connection connection = ConnectionUtil.getConnection()) {
 			int parameterIndex = 0;
 			
-			String sql = "SELECT U.U_ID, U.U_FIRSTNAME, U.U_LASTNAME, U.U_USERNAME, U.U_PASSWORD, U.U_EMAIL ,U.UR_ID, UR.UR_TYPE FROM USER_T U FULL OUTER JOIN USER_ROLE UR ON U.UR_ID = UR.UR_ID WHERE USERNAME = ? ";
+			String sql = "SELECT U.U_ID, U.U_FIRSTNAME, U.U_LASTNAME, U.U_USERNAME,"
+							+"U.U_PASSWORD, U.U_EMAIL ,U.UR_ID, UR.UR_TYPE FROM USER_T U"
+							+" FULL OUTER JOIN USER_ROLE UR ON U.UR_ID = UR.UR_ID WHERE U.U_USERNAME = ? ";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			
 			statement.setString(++parameterIndex, username);
@@ -209,5 +211,13 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}*/
+	
+	//public static void main(String[] args) {
+		//Employee employee = new Employee(null,"jack","lolly","jklol","1234","email",1);
+//		CustomerRepositoryJdbc repository = new CustomerRepositoryJdbc();
+//		logger.trace(EmployeeRepositoryJDBC.getInstance().selectAll());
+//		logger.trace(EmployeeRepositoryJDBC.getInstance().select("AI123"));
+//		logger.trace(EmployeeRepositoryJDBC.getInstance().select("42"));
+	//}
 
 }

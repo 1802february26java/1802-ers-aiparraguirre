@@ -2,12 +2,17 @@ package com.revature.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ajax.EmployeeMessage;
 import com.revature.model.Employee;
+import com.revature.repository.EmployeeRepositoryJDBC;
 import com.revature.service.EmployeeServiceAlpha;
 
 public class LoginControllerAlpha implements LoginController {
 
+	private static Logger logger = Logger.getLogger(LoginControllerAlpha.class);
+	
 //private static LoginController loginController = new LoginControllerAlpha();
 	
 	//private LoginControllerAlpha(){}
@@ -18,7 +23,7 @@ public class LoginControllerAlpha implements LoginController {
 	
 	@Override
 	public String login(HttpServletRequest request) {
-		
+		logger.trace("Login Controller login check");
 		Employee employee = new Employee();
 		
 		if (request.getMethod().equals("GET")){
@@ -28,7 +33,11 @@ public class LoginControllerAlpha implements LoginController {
 		employee.setUsername(request.getParameter("username"));
 		employee.setPassword(request.getParameter("password"));
 		
+		logger.trace("Username made it to here from login page: "+ employee.getUsername());
+		
 		Employee loggedEmployee = EmployeeServiceAlpha.getInstance().authenticate(employee);
+		
+		logger.trace(loggedEmployee.getFirstName());
 		
 		if(loggedEmployee == null){
 			return  EmployeeMessage.EMPLOYEE_LOGIN_FAILED;

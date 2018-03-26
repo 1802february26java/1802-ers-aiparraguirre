@@ -2,11 +2,14 @@ package com.revature.service;
 
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import com.revature.model.Employee;
 import com.revature.repository.EmployeeRepositoryJDBC;
 
 public class EmployeeServiceAlpha implements EmployeeService {
-
+	private static Logger logger = Logger.getLogger(EmployeeServiceAlpha.class);
+	
 	private static EmployeeService employeeService = new EmployeeServiceAlpha();
 	
 	private EmployeeServiceAlpha(){}
@@ -20,17 +23,25 @@ public class EmployeeServiceAlpha implements EmployeeService {
 	public Employee authenticate(Employee employee) {
 		
 		Employee loggedEmployee = EmployeeRepositoryJDBC.getInstance().select(employee.getUsername());
+		System.out.println("Username made it to AUTHENTICATE from login page: "+ employee.getUsername());
 		
 			if(loggedEmployee.getPassword().equals(EmployeeRepositoryJDBC.getInstance().getPasswordHash(employee))){
-			
+			logger.trace("password has been checked and we are in authenticate if statement");
 			return loggedEmployee;
-		}
-		return null;
+		}else
+			return null;
 	}
 	
 	@Override
 	public Employee getEmployeeInformation(Employee employee) {
-		// TODO Auto-generated method stub
+		
+	//	if(employee.getUsername()=null){
+			
+			
+			
+		//}
+		
+		
 		return null;
 	}
 
