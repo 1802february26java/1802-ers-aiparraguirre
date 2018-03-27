@@ -17,7 +17,9 @@ window.onload=()=>{
         xhr.onreadystatechange = ()=>{
             
             if(xhr.readyState === 4 && xhr.status === 200){
-                
+                console.log(xhr.readyState);
+                console.log(xhr.status);
+                console.log(xhr.responseText);
                 let data = JSON.parse(xhr.responseText);
                 console.log(data);
                 login(data);
@@ -26,7 +28,7 @@ window.onload=()=>{
         };
 
         //doing a HTTP to a specific endpoint
-        
+
         console.log('before the post');
 
         xhr.open('POST', `login.do?username=${username}&password=${password}`);
@@ -43,7 +45,9 @@ function login(data){
     //falsey truthy
     // if message is a memever of JSON then it is authentication failed
     console.log('Inside of the logindata');
+
    if(data.message){
+
     console.log('Inside the IF of the logindata');
         document.getElementById('loginMessage').innerHTML = '<span class="label label-danger label-center">Wrong credentials.</span>';
     }

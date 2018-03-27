@@ -31,6 +31,6 @@
 	
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<location>/oops.do</location>
+		<location>/home.do</location>
 	</error-page>
 </web-app>

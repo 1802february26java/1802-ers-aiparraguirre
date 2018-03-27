@@ -43,13 +43,12 @@ public class RequestHelper {
 	public Object process(HttpServletRequest request) {
 		switch(request.getRequestURI())
 		{
-		case "/ERS/login.do":
-			return new LoginControllerAlpha().login(request);
+		case "/ERS/login.do":case "/ERS":
+			return LoginControllerAlpha.getInstance().login(request);
 		case "/ERS/logout.do":
-			return new LoginControllerAlpha().logout(request);
+			return LoginControllerAlpha.getInstance().logout(request);
 		case "/ERS/home.do":
 			return HomeControllerAlpha.getInstance().showEmployeeHome(request);
-				
 		default:
 			return new ErrorControllerAlpha().showError(request);
 		}
