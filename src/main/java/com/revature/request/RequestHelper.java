@@ -47,7 +47,9 @@ public class RequestHelper {
 			return LoginControllerAlpha.getInstance().login(request);
 		case "/ERS/logout.do":
 			return LoginControllerAlpha.getInstance().logout(request);
-		case "/ERS/home.do":
+		case "/ERS/homeEmployee.do":
+			return HomeControllerAlpha.getInstance().showEmployeeHome(request);
+		case "/ERS/homeManager.do":
 			return HomeControllerAlpha.getInstance().showEmployeeHome(request);
 		default:
 			return new ErrorControllerAlpha().showError(request);

@@ -17,11 +17,11 @@ window.onload=()=>{
         xhr.onreadystatechange = ()=>{
             
             if(xhr.readyState === 4 && xhr.status === 200){
-                console.log(xhr.readyState);
-                console.log(xhr.status);
-                console.log(xhr.responseText);
+                //console.log(xhr.readyState);
+                //console.log(xhr.status);
+                //console.log(xhr.responseText);
                 let data = JSON.parse(xhr.responseText);
-                console.log(data);
+                //console.log(data);
                 login(data);
             }
 
@@ -29,11 +29,11 @@ window.onload=()=>{
 
         //doing a HTTP to a specific endpoint
 
-        console.log('before the post');
+        //console.log('before the post');
 
         xhr.open('POST', `login.do?username=${username}&password=${password}`);
 
-        console.log('WE are past xhr post');
+       // console.log('WE are past xhr post');
         //Sending our request
 
         xhr.send();
@@ -62,6 +62,11 @@ function login(data){
         sessionStorage.setItem("employeeEmail", data.email);
         sessionStorage.setItem("employeeRole", data.employeeRole.id);
         //redirect in javascript
-        window.location.replace("home.do");
-     }
+        if(data.employeeRole === 2){
+            window.location.replace("homeManager.do");  
+        }
+            window.location.replace("homeEmployee.do");
+     
+        // DO 
+    }
 }
