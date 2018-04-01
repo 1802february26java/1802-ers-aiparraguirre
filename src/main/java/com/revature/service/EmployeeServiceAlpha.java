@@ -23,9 +23,12 @@ public class EmployeeServiceAlpha implements EmployeeService {
 	public Employee authenticate(Employee employee) {
 		
 		Employee loggedEmployee = EmployeeRepositoryJDBC.getInstance().select(employee.getUsername());
-		System.out.println("Username made it to AUTHENTICATE from login page: "+ employee.getUsername());
 		
-			if(loggedEmployee.getPassword().equals(EmployeeRepositoryJDBC.getInstance().getPasswordHash(employee))){
+		logger.trace("Username made it to AUTHENTICATE from login page: "+ employee.getUsername());
+
+		logger.trace("Logged employee variable from authenticate: " +loggedEmployee);
+		
+		if(loggedEmployee!=null && loggedEmployee.getPassword().equals(EmployeeRepositoryJDBC.getInstance().getPasswordHash(employee))){
 			logger.trace("password has been checked and we are in authenticate if statement");
 			return loggedEmployee;
 		}else
@@ -35,14 +38,12 @@ public class EmployeeServiceAlpha implements EmployeeService {
 	@Override
 	public Employee getEmployeeInformation(Employee employee) {
 		
-	//	if(employee.getUsername()=null){
-			
-			
-			
-		//}
+		logger.trace("Passing Employee Info. from service to DAO");
 		
+		logger.trace("Passing Employee Info. from DAO to Controller");
+	
+		return EmployeeRepositoryJDBC.getInstance().select(employee.getId());
 		
-		return null;
 	}
 
 	@Override

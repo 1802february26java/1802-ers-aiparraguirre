@@ -1,3 +1,8 @@
+body{
+    background-image: url("../image/loginImg.jpg");
+    background-size: cover;
+}
+
 a{
     cursor: pointer;
 }

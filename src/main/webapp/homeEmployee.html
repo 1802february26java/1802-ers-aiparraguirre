@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Home</title>
+   <title>Employee Home</title>
     
     <!--title icon-->
     <link rel="icon" href="image/customer.ico"/> 
@@ -29,8 +29,9 @@
                 <li class ="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Operations</strong><span class="caret"></span></a>
                     <ul class ="dropdown-menu">
-                        <li><a href="getAll.do">List Customers</a></li>
-                        <li><a>another</a></li>
+                        <li><a href="getAll.do">List Reimbursement</a></li>
+                        <li><a>Input Reimbursement</a></li>
+                        <li><a>Update Employee</a></li>
                     </ul>
                 </li> 
             </ul>
@@ -39,15 +40,24 @@
             </div>
         </div>
     </nav>
-    <div class ="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            
-            <div class="panel-footer">
-                
+    <div>
+        <div class ="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Employee Information</h3></div>
+                <table id="employee" class="table table-striped table-hover ">
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th> 
+                        <th>Email</th>
+                    </tr>
+                </table>
+                                   
+                <div class="panel-footer">
+                    
+                </div>
             </div>
-        </div>
     </div>
    
-<script src="js/home.js"></script>
+<script src="js/homeManager.js"></script>
 </body>
 </html>

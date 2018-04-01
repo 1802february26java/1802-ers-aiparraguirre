@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 import com.revature.ajax.EmployeeMessage;
+import com.revature.ajax.MessageUtil;
 import com.revature.model.Employee;
 import com.revature.service.EmployeeServiceAlpha;
 
@@ -38,10 +39,13 @@ public class LoginControllerAlpha implements LoginController {
 		
 		Employee loggedEmployee = EmployeeServiceAlpha.getInstance().authenticate(employee);
 		
-		//logger.trace(loggedEmployee.getFirstName());
+		logger.trace("Logged employee variable from authenticate: " +loggedEmployee);
 		
 		if(loggedEmployee == null){
-			return  loggedEmployee;
+			
+			logger.trace("Not an employee returning a fail message");
+			logger.trace(MessageUtil.EMPLOYEE_LOGIN_FAILED);
+			return  new EmployeeMessage(MessageUtil.EMPLOYEE_LOGIN_FAILED);
 		}
 		
 		request.getSession().setAttribute("loggedEmployee", loggedEmployee);

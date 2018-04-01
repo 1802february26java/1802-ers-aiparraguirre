@@ -2,9 +2,9 @@ window.onload=()=>{
     /**
      * Redirect user to the right html if they come from somewhere else
      */
-    if(window.location.pathname !=='/ERS/login.do'){
-       window.location.replace(login.do);
-   }
+    //if(window.location.pathname !=='/ERS/login.do'){
+      // window.location.replace(login.do);
+   //}
      //login Event Listener
     document.getElementById("login").addEventListener("click",()=>{
         //callback function
@@ -61,12 +61,12 @@ function login(data){
         sessionStorage.setItem("employeeLastName", data.lastName);
         sessionStorage.setItem("employeeEmail", data.email);
         sessionStorage.setItem("employeeRole", data.employeeRole.id);
+
         //redirect in javascript
-        if(data.employeeRole === 2){
-            window.location.replace("homeManager.do");  
-        }
-            window.location.replace("homeEmployee.do");
-     
-        // DO 
+        
+        window.location.replace("home.do");  
+        
+       
+         
     }
 }
