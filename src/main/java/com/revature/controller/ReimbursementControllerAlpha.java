@@ -135,19 +135,27 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 				
 			    if(request.getParameter("fetch") == null) {
 			    	
-			    	logger.trace("Reimbursement Controller: did we get the fetch? ");
+			    	logger.trace("Reimbursement Controller EMPLOYEE: did we get the fetch? ");
 				    return "empPenReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("resolved")){
 			    
 			    	logger.trace("Reimbursement Controller: did we get the fetch resolved ");
-			        return "empResReimbursement.html";
+			    	   		 
+					 
+			    	 return "empResReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("finalized")){
 			    
-			    	logger.trace("Reimbursement Controller: did we get the fetch finalized ");
-					return ReimbursementServiceAlpha.getInstance().getUserFinalizedRequests(loggedEmployee);
-				
+			    	
+			    	if(ReimbursementServiceAlpha.getInstance().getUserFinalizedRequests(loggedEmployee) != null){
+						 
+			    		 return ReimbursementServiceAlpha.getInstance().getUserFinalizedRequests(loggedEmployee) ;
+					 }else{
+						 
+						return new EmployeeMessage(MessageUtil.NOTHING_RESOLVED);
+					 }
+			    	
 			    }else if (request.getParameter("fetch").equals("pending")){
 					
 			    	logger.trace("Reimbursement Controller: did we get fetch pending ");
@@ -167,12 +175,12 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 			    if(request.getParameter("fetch") == null) {
 			    	
 			    	 logger.trace("Reimbursement Controller: Manager the fetch null ");
-				     return "manResReimbursement.html";
+				     return "manPendReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("resolved")){
 			    
 			    	 logger.trace("Reimbursement Controller: Manager the fetch resolved ");
-			    	 return ReimbursementServiceAlpha.getInstance().getAllResolvedRequests();
+			    	 return "manResReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("finalized")){
 			    	

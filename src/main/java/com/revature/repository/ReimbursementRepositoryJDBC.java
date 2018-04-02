@@ -178,7 +178,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
 						+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
 						+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
-						+" WHERE R.EMPLOYEE_ID = '?'";
+						+" WHERE R.EMPLOYEE_ID = '?' && WHERE RS.STATUS LIKE 'APPROVED'";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(++parameterIndex, employeeId);

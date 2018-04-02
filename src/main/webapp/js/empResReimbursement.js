@@ -19,7 +19,7 @@ function getResReimbursement(){
             showResReimbursement(data);
           }
       };
-    console.log(xhr.open("GET",`multipleRequests.do?fetch=resolved`));
+    xhr.open("GET",`multipleRequests.do?fetch=finalized`);
  
     xhr.send();
 }
@@ -27,7 +27,7 @@ function getResReimbursement(){
 function showResReimbursement(data) {
      
     if(data.message){
-        document.getElementById("listMessage").innerHTML = '<span class="label label-danger label-center">Something went wrong.</span>';
+        document.getElementById("listMessage").innerHTML = '<span class="label label-danger label-center">NO RESOLVED REIMBURSEMENTS.</span>';
     }else{
     
         let reimbursementList = document.getElementById("resReimbursement");
@@ -51,8 +51,7 @@ function showResReimbursement(data) {
         let txt1 = document.createTextNode(`${reimbursement.id}`);
         let txt2 = document.createTextNode(`${reimbursement.requested.year}-${reimbursement.requested.monthValue}-${reimbursement.requested.dayOfMonth}, ${reimbursement.requested.hour}:${reimbursement.requested.minute}:${reimbursement.requested.second}`);
         let txt3 = document.createTextNode(`${reimbursement.resolved.year}-${reimbursement.resolved.monthValue}-${reimbursement.resolved.dayOfMonth}, ${reimbursement.resolved.hour}:${reimbursement.resolved.minute}:${reimbursement.resolved.second}`); 
-        console.log(reimbursement.requested);
-        console.log(reimbursement.resolved);
+        
         let txt4 = document.createTextNode(`${reimbursement.amount}`);
         let txt5 = document.createTextNode(`${reimbursement.description}`);
         let txt6 = document.createTextNode(`${reimbursement.requester.firstName} ${reimbursement.requester.lastName}`);

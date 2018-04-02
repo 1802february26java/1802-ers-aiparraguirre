@@ -17,4 +17,8 @@ public class MessageUtil {
 	public static final String INVALID_AMOUNT="INVALID AMOUNT!";
 	
 	public static final String INVALID_TYPE="INVALID TYPE!";
+	
+	public static final String NOTHING_RESOLVED="NOTHING";
+	
+	
 }

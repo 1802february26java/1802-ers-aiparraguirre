@@ -19,7 +19,7 @@ function getResReimbursement(){
             showResReimbursement(data);
           }
       };
-    console.log(xhr.open("GET",`multipleRequests.do?fetch=resolved`));
+    console.log(xhr.open("GET",`multipleRequests.do?fetch=finalized`));
  
     xhr.send();
 }
@@ -56,7 +56,7 @@ function showResReimbursement(data) {
         let txt4 = document.createTextNode(`${reimbursement.amount}`);
         let txt5 = document.createTextNode(`${reimbursement.description}`);
         let txt6 = document.createTextNode(`${reimbursement.requester.firstName} ${reimbursement.requester.lastName}`);
-        let txt7 = document.createTextNode(`${reimbursement.requester.firstName} ${reimbursement.requester.lastName}`);
+        
         let txt8 = document.createTextNode(`${reimbursement.type.type}`);
         let txt9 = document.createTextNode(`${reimbursement.status.status}`);
         
@@ -66,7 +66,7 @@ function showResReimbursement(data) {
             td4.appendChild(txt4);
             td5.appendChild(txt5);
             td6.appendChild(txt6);
-            td7.appendChild(txt7);
+       //     td7.appendChild(txt7);
             td8.appendChild(txt8);
             td9.appendChild(txt9);
             
@@ -76,7 +76,7 @@ function showResReimbursement(data) {
             tr.appendChild(td4);
             tr.appendChild(td5);
             tr.appendChild(td6);
-            tr.appendChild(td7);
+         //   tr.appendChild(td7);
             tr.appendChild(td8);
             tr.appendChild(td9);
 
