@@ -114,10 +114,8 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 			}
 			
 			Reimbursement reimbursement = new Reimbursement();
-			return ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);
-			
+			return ReimbursementServiceAlpha.getInstance().getSingleRequest(reimbursement);	
 		}
-
 
 	@Override
 	public Object multipleRequests(HttpServletRequest request) {
@@ -131,18 +129,19 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 			}
 			
 			logger.trace("Reimbursement Controller: Inside multipleRequests " +request.getParameter("fetch"));
+			logger.trace("Reimbursement Controller: Inside multipleRequests " +loggedEmployee.getEmployeeRole().getId());
 			
 			if(loggedEmployee.getEmployeeRole().getId()==1){
 				
 			    if(request.getParameter("fetch") == null) {
 			    	
 			    	logger.trace("Reimbursement Controller: did we get the fetch? ");
-				    return "empPendReimbursement.html";
+				    return "empPenReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("resolved")){
 			    
 			    	logger.trace("Reimbursement Controller: did we get the fetch resolved ");
-			         return "empResReimbursement.html";
+			        return "empResReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("finalized")){
 			    
@@ -168,21 +167,21 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 			    if(request.getParameter("fetch") == null) {
 			    	
 			    	 logger.trace("Reimbursement Controller: Manager the fetch null ");
-				     return "manPendReimbursement.html";
+				     return "manResReimbursement.html";
 			    
 			    }else if(request.getParameter("fetch").equals("resolved")){
 			    
-			    	 logger.trace("Reimbursement Controller: Manger the fetch resolved ");
-			         return "manResReimbursement.html";
+			    	 logger.trace("Reimbursement Controller: Manager the fetch resolved ");
+			    	 return ReimbursementServiceAlpha.getInstance().getAllResolvedRequests();
 			    
 			    }else if(request.getParameter("fetch").equals("finalized")){
 			    	
-			    	logger.trace("Reimbursement Controller: Manger the fetch finalized ");
+			    	logger.trace("Reimbursement Controller: Manager the fetch finalized ");
 			    	return ReimbursementServiceAlpha.getInstance().getAllResolvedRequests();
 				
 			    }else if (request.getParameter("fetch").equals("pending")){
 			    	
-			    	logger.trace("Reimbursement Controller: Manger the fetch pending ");
+			    	logger.trace("Reimbursement Controller: Manager the fetch pending ");
 			        return ReimbursementServiceAlpha.getInstance().getAllPendingRequests();
 				
 				}else if (request.getParameter("fetch").equals("viewSelected")){
@@ -201,7 +200,7 @@ public class ReimbursementControllerAlpha implements ReimbursementController {
 				 
 				}else{
 					
-					return "manaPendReimbursement.html";
+					return "manPendReimbursement.html";
 			
 				}
 				

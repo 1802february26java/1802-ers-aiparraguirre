@@ -54,9 +54,13 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 		
 		if(request.getSession().getAttribute("loggedEmployee")== null){
 			return "login.html";
-		}else {
-			return EmployeeServiceAlpha.getInstance().getAllEmployeesInformation();
-		}
+		}else if(request.getParameter("fetch") == null) {
+			
+			return "viewAllEmployees.html"; 
+		} else {
+			logger.trace("Employee info controller: Retrieving  all employee information");
+		return EmployeeServiceAlpha.getInstance().getAllEmployeesInformation();
+}
 	}
 
 	@Override

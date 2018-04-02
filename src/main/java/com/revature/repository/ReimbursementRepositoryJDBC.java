@@ -258,20 +258,22 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 	public Set<Reimbursement> selectAllFinalized() {
 		
 		try(Connection connection = ConnectionUtil.getConnection()){
-			
+			logger.trace("Reimbursement JDBC: selectAllFinalized");
 			String status = "APPROVED";
 		
 			String sql ="SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R" 
 						+" FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID)"
 						+" FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID)"
 						+" FULL JOIN USER_T U ON U.U_ID = R.R_ID "
-						+" WHERE RS.RS_STATUS = ?";
+						+" WHERE RS.RS_STATUS = 'APPROVED'";
 			
 			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(0, status);
+			//statement.setString(0, status);
 			ResultSet result = statement.executeQuery();
 			
 			Set<Reimbursement> employeeFinalizedList = new HashSet<>();
+			
+			logger.trace("Returning all select All Finalized");
 			
 			while(result.next()){
 					    employeeFinalizedList.add(new Reimbursement(
@@ -282,7 +284,7 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 						result.getString("R_DESCRIPTION"),
 						EmployeeRepositoryJDBC.getInstance().select(result.getInt("EMPLOYEE_ID")),
 						EmployeeRepositoryJDBC.getInstance().select(result.getInt("MANAGER_ID")),
-						new ReimbursementStatus(result.getInt("RS.RS_ID"), result.getString("RS_STATUS")),
+						new ReimbursementStatus(result.getInt("RS_ID"), result.getString("RS_STATUS")),
 						new ReimbursementType(result.getInt("RT_ID"), result.getString("RT_TYPE"))
 						)
 					);
@@ -322,7 +324,9 @@ public class ReimbursementRepositoryJDBC implements ReimbursementRepository {
 		}
 		return null;
 	}
-	//public static void main(String[] args) {
-	//	logger.trace(ReimbursementRepositoryJDBC.getInstance().selectAllPending());
-	//}
+	public static void main(String[] args) {
+		//logger.trace(ReimbursementRepositoryJDBC.getInstance().selectAllPending());
+		logger.trace(ReimbursementRepositoryJDBC.getInstance().selectAllFinalized());
+		
+	}
 }

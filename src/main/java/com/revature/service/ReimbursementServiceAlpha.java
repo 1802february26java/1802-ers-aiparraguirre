@@ -68,6 +68,7 @@ public class ReimbursementServiceAlpha implements ReimbursementService {
 	@Override
 	public Set<Reimbursement> getAllResolvedRequests() {
 		
+		logger.trace("Reimbursement Service: in get allResolvedRequests");
 		return ReimbursementRepositoryJDBC.getInstance().selectAllFinalized();
 		
 	}

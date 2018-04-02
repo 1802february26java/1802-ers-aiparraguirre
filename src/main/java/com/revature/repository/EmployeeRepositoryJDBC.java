@@ -162,7 +162,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 						new EmployeeRole(result.getInt("UR_ID"), result.getString("UR_TYPE"))
 						));
 			}
-
+			logger.trace("employeeList");
 			return (Set<Employee>) employeeList;
 		} catch (SQLException e) {
 			logger.info("Exception selecting all Users", e);

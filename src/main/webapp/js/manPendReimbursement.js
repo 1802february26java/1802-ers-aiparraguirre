@@ -37,14 +37,14 @@ function showPendReimbursement(data) {
         document.getElementById("listMessage").innerHTML = '<span class="label label-danger label-center">Something went wrong.</span>';
     }else{
     
-        let counter = 0; 
+         
 
         let reimbursementList = document.getElementById("pendReimbursement");
              reimbursementList.innerHTML="";
         
         data.forEach((reimbursement)=>{
         
-        counter = counter + 1;            
+                   
         let tr = document.createElement('tr');   
 
         let td1 = document.createElement('td');
@@ -75,12 +75,12 @@ function showPendReimbursement(data) {
          let text4 = document.createTextNode(`${reimbursement.description}`);
          let text5 = document.createTextNode(`${reimbursement.requester.firstName} ${reimbursement.requester.lastName}`);
          let text6 = document.createTextNode(`${reimbursement.type.type}`);
-         //td 7 text
+         
          let optionText1 = document.createTextNode(`${reimbursement.status.status}`);
          let optionText2 = document.createTextNode(`DECLINE`);
          let optionText3 = document.createTextNode(`APPROVE`); 
 
-         //td8
+         
         let textButton2 = document.createTextNode('UPDATE');
         button2.className = 'btn btn-sm btn-success';
         button2.setAttribute('onclick','finalizedReimbursement(this)');
@@ -118,91 +118,5 @@ function showPendReimbursement(data) {
             reimbursementList.appendChild(tr);
         });
 
-    }
-}
-
-
-
-function finalizedReimbursement(obj){
-
-   let rowData = obj.parentNode.parentNode;
-
- 
-   let statusCode =rowData.childNodes[7].childNodes[0].value ;
-   let reimbursementId = rowData.childNodes[0].innerHTML;
-   
-
-   let statusID;
-   if(statusCode === 'APPROVE'){
-    statusID = 3;
-   }
-   else if(statusCode === 'DECLINE'){
-    statusID = 2;
-   }
-   else{
-    statusID = 1;
-   }
-   console.log(statusID);
-
-
-   //AJAX Logic
-   let xhr = new XMLHttpRequest();
-
-   xhr.onreadystatechange = () => {
-       if(xhr.readyState === XMLHttpRequest.DONE && xhr.status ===200){
-           //Getting JSON from response body
-           let data = JSON.parse(xhr.responseText);
-           console.log(data);   
-           //Cal login response processing
-           updateReimbursement(data);
-       }
-   };
-     //Doing a HTTP to a specifc endpoint
-    xhr.open("POST",`finalizeRequest.do?reimbursementId=${reimbursementId}&status=${statusCode}&statusId=${statusID}`);
-//Sending our request
-    xhr.send();
-
-}
-
-function updateReimbursement(data) {
-
-    if(data.message === "A REIMBURSEMENT HAS BEEN UPDATED SUCCESSFULLY"){
-      document.getElementById("listMessage").innerHTML = '<span class="label label-success label-center">Update successful.</span>';
-      
-      setTimeout(() =>{ window.location.replace("home.do");}, 3000);
- 
-    }
-    else{
-      document.getElementById("listMessage").innerHTML = '<span class="label label-danger label-center">Something went wrong.</span>';
-         
-    }
- 
-}
-
-
-function filterTable(){
-
-    // Get variables 
-  let filter = document.getElementById("filter").value.toUpperCase();
-  let table = document.getElementById("pendReimbursement");
-  let tr = table.getElementsByTagName("tr");
-  let i, j;
-  // Loop through all rows, hide those do not fit
-  for (i = 0; i < tr.length; i++) {
-
-    loop:  for(j = 0;j<6;j++){
-        td = tr[i].getElementsByTagName("td")[j];
-          if (td) {
-             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-                break loop;
-           } else {
-                tr[i].style.display = "none";
-                
-           }
-        } 
-        
-      }
-  
     }
 }

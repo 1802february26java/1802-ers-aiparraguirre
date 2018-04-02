@@ -48,6 +48,7 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public Set<Employee> getAllEmployeesInformation() {
+		logger.trace("Employee Service: Retrieving  all employee information");
 		return EmployeeRepositoryJDBC.getInstance().selectAll();
 	}
 

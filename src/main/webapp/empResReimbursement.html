@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Manager Home</title>
+   <title>Employee Resolved Reimbursement</title>
     
     <!--title icon-->
     <link rel="icon" href="image/customer.ico"/> 
-<!-- order below matters because they need the above script to run-->
+    
    <!-- jQuery library -->
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,15 +23,16 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="home.do" class="navbar-brand">Manager: <strong id="username">Home</strong></a>
+                <a href="home.do" class="navbar-brand">Employee: <strong id="username">Home</strong></a>
             </div>
             <ul class = "nav navbar-nav">
                 <li class ="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Operations</strong><span class="caret"></span></a>
                     <ul class ="dropdown-menu">
-                        <li><a href="viewAllEmployees.do">List All Employees</a></li>
-                        <li><a href="multipleRequests.do">Pending Reimbursements</a></li>
-                        <li><a href="multipleRequests.do">Resolved Reimbursements</a></li>
+                        <li><a href="home.do">Homepage</a></li>
+                        <li><a href="submitRequest.do">Submit Reimbursement</a></li>
+                        <!--<li><a href="multipleRequests.do">Pending Reimbursements</a></li>-->
+
                     </ul>
                 </li> 
             </ul>
@@ -42,24 +43,30 @@
         
     </nav>
     <div>
-        <div class ="col-md-4 col-md-offset-4">
+        <div class ="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Manager Information</h3></div>
-                <table id="employee" class="table table-striped table-hover ">
-                    <tr>
-                        <th>Name</th>
-                        <th>Username</th> 
-                        <th>Email</th>
-                    </tr>
-
+                <div class="panel-heading"><h3>Resolved Reimbursements</h3></div>
+                <table id="resolved" class="table table-striped table-hover ">
+                    
+                    <th scope="col" class="col-sm-1">ID</th> 
+                    <th scope="col" class="col-sm-2">Request Date</th>
+                    <th scope="col" class="col-sm-2">Resolved Date</th>
+                    <th scope="col" class="col-sm-2">Amount</th>
+                    <th scope="col" class="col-sm-2">Description</th>
+                    <th scope="col" class="col-sm-2">Name</th>
+                    <th scope="col" class="col-sm-2">Type</th>
+                    <th scope="col" class="col-sm-2">Request status</th>
+                    <tbody id="resReimbursement">
+                    </tbody>
                 </table>
                                    
                 <div class="panel-footer">
-                    
+                <div id="listMessage"></div>
+                
                 </div>
             </div>
     </div>
    
-<script src="js/homeManager.js"></script>
+<script src="js/empResReimbursement.js"></script>
 </body>
 </html>

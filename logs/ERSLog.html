@@ -857,3 +857,237 @@ Log session start time Mon Apr 02 07:09:47 EDT 2018<br>
 <td>ReimbursementRepositoryJDBC.java:329</td>
 <td title="Message">[Reimbursement [id=1, requested=2018-04-02T05:15:45.592, resolved=null, amount=10.0, description=ENHTUWARE                            , requester=Employee [id=42, firstName=Jack, lastName=Jill, username=JJ123, password=EEFF8EEE706C3C104F9AB13003428560, email=myth2486@gmail.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=null, status=ReimbursementStatus [id=1, status=PENDING], type=ReimbursementType [id=2, type=COURSE]]]</td>
 </tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test Log HTML</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Mon Apr 02 12:56:16 EDT 2018<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:261</td>
+<td title="Message">Reimbursement JDBC: selectAllFinalized</td>
+</tr>
+
+<tr>
+<td>163</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:292</td>
+<td title="Message">Exception Selecting All Reimbursements that are approved</td>
+</tr>
+<tr><td bgcolor="#993300" style="color:White; font-size : xx-small;" colspan="6">java.sql.SQLException: Invalid column index
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.OraclePreparedStatement.setStringInternal(OraclePreparedStatement.java:5741)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.OraclePreparedStatement.setString(OraclePreparedStatement.java:5729)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.OraclePreparedStatementWrapper.setString(OraclePreparedStatementWrapper.java:289)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllFinalized(ReimbursementRepositoryJDBC.java:271)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:327)
+</td></tr>
+
+<tr>
+<td>165</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:327</td>
+<td title="Message">null</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test Log HTML</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Mon Apr 02 13:16:49 EDT 2018<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:261</td>
+<td title="Message">Reimbursement JDBC: selectAllFinalized</td>
+</tr>
+
+<tr>
+<td>583</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:292</td>
+<td title="Message">Exception Selecting All Reimbursements that are approved</td>
+</tr>
+<tr><td bgcolor="#993300" style="color:White; font-size : xx-small;" colspan="6">java.sql.SQLException: Invalid column name
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllFinalized(ReimbursementRepositoryJDBC.java:285)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:327)
+</td></tr>
+
+<tr>
+<td>591</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:327</td>
+<td title="Message">null</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test Log HTML</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Mon Apr 02 13:19:35 EDT 2018<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:261</td>
+<td title="Message">Reimbursement JDBC: selectAllFinalized</td>
+</tr>
+
+<tr>
+<td>195</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:276</td>
+<td title="Message">Returning all select All Finalized</td>
+</tr>
+
+<tr>
+<td>485</td>
+<td title="main thread">main</td>
+<td title="Level">INFO</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:294</td>
+<td title="Message">Exception Selecting All Reimbursements that are approved</td>
+</tr>
+<tr><td bgcolor="#993300" style="color:White; font-size : xx-small;" colspan="6">java.sql.SQLException: Invalid column name
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllFinalized(ReimbursementRepositoryJDBC.java:287)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:329)
+</td></tr>
+
+<tr>
+<td>489</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:329</td>
+<td title="Message">null</td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test Log HTML</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Mon Apr 02 13:24:54 EDT 2018<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:261</td>
+<td title="Message">Reimbursement JDBC: selectAllFinalized</td>
+</tr>
+
+<tr>
+<td>189</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:276</td>
+<td title="Message">Returning all select All Finalized</td>
+</tr>
+
+<tr>
+<td>1566</td>
+<td title="main thread">main</td>
+<td title="Level">TRACE</td>
+<td title="com.revature.repository.ReimbursementRepositoryJDBC category">com.revature.repository.ReimbursementRepositoryJDBC</td>
+<td>ReimbursementRepositoryJDBC.java:329</td>
+<td title="Message">[Reimbursement [id=23, requested=2014-07-02T06:14:00.742, resolved=2018-04-02T11:14:00.742, amount=10.0, description=Lunch, requester=Employee [id=30, firstName=James, lastName=Dooley, username=JD134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]], status=ReimbursementStatus [id=3, status=APPROVED], type=ReimbursementType [id=4, type=TRAVELING]], Reimbursement [id=24, requested=2014-07-02T06:14:00.742, resolved=2018-04-02T11:14:00.742, amount=35.0, description=Car rental., requester=Employee [id=31, firstName=Noreen, lastName=Mcnair, username=NM134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=2, type=MANAGER]], approver=Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]], status=ReimbursementStatus [id=3, status=APPROVED], type=ReimbursementType [id=4, type=TRAVELING]], Reimbursement [id=22, requested=2014-07-02T06:14:00.742, resolved=2018-04-02T11:14:00.742, amount=370.0, description=Roundtrip Airplane tickets, requester=Employee [id=29, firstName=Brian, lastName=Loots, username=BL134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]], status=ReimbursementStatus [id=3, status=APPROVED], type=ReimbursementType [id=4, type=TRAVELING]], Reimbursement [id=21, requested=2014-07-02T06:14:00.742, resolved=2018-04-02T11:14:00.742, amount=200.0, description=I splurged on the company dime!!, requester=Employee [id=23, firstName=Bob, lastName=Tully, username=BT134, password=EEFF8EEE706C3C104F9AB13003428560, email=j@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]], status=ReimbursementStatus [id=3, status=APPROVED], type=ReimbursementType [id=4, type=TRAVELING]], Reimbursement [id=25, requested=2014-07-02T06:14:00.742, resolved=2018-04-02T11:14:00.742, amount=150.0, description=Hotel stay, requester=Employee [id=21, firstName=Paul, lastName=Farley, username=PF134, password=EEFF8EEE706C3C104F9AB13003428560, email=paul@farley.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]], status=ReimbursementStatus [id=3, status=APPROVED], type=ReimbursementType [id=4, type=TRAVELING]]]</td>
+</tr>
