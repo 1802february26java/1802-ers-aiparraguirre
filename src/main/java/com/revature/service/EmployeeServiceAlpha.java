@@ -48,8 +48,7 @@ public class EmployeeServiceAlpha implements EmployeeService {
 
 	@Override
 	public Set<Employee> getAllEmployeesInformation() {
-		// TODO Auto-generated method stub
-		return null;
+		return EmployeeRepositoryJDBC.getInstance().selectAll();
 	}
 
 	@Override

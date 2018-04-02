@@ -21,3 +21,123 @@ java.sql.SQLSyntaxErrorException: ORA-00904: "USERNAME": invalid identifier
 2018-03-26 13:55:29 TRACE EmployeeRepositoryJDBC:217 - Employee [id=0, firstName=null, lastName=null, username=null, password=null, email=null, userRole=null]
 2018-03-26 13:57:15 TRACE EmployeeRepositoryJDBC:219 - Employee [id=41, firstName=Alex, lastName=Iparraguirre, username=AI123, password=EEFF8EEE706C3C104F9AB13003428560, email=aiparrag3@gmail.com, userRole=EmployeeRole [id=2, type=MANAGER]]
 2018-03-26 13:58:20 TRACE EmployeeRepositoryJDBC:220 - Employee [id=0, firstName=null, lastName=null, username=null, password=null, email=null, userRole=null]
+2018-04-02 06:36:56 INFO  ReimbursementRepositoryJDBC:253 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:776)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:897)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1034)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3867)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1502)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:232)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:327)
+2018-04-02 06:36:56 TRACE ReimbursementRepositoryJDBC:327 - 
+2018-04-02 06:39:09 INFO  ReimbursementRepositoryJDBC:253 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLSyntaxErrorException: ORA-00933: SQL command not properly ended
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1017)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:655)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:249)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:566)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:215)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:58)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:776)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:897)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1034)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3820)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3867)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:1502)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:232)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:327)
+2018-04-02 06:39:09 TRACE ReimbursementRepositoryJDBC:327 - 
+2018-04-02 06:41:09 INFO  ReimbursementRepositoryJDBC:253 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:238)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:327)
+2018-04-02 06:41:09 TRACE ReimbursementRepositoryJDBC:327 - 
+2018-04-02 06:46:13 INFO  ReimbursementRepositoryJDBC:253 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:238)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:327)
+2018-04-02 06:46:13 TRACE ReimbursementRepositoryJDBC:327 - 
+2018-04-02 06:48:19 INFO  ReimbursementRepositoryJDBC:263 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:236)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:337)
+2018-04-02 06:48:19 TRACE ReimbursementRepositoryJDBC:337 - 
+2018-04-02 06:48:52 TRACE ReimbursementRepositoryJDBC:235 - listing the stuff
+2018-04-02 06:48:52 INFO  ReimbursementRepositoryJDBC:263 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:236)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:337)
+2018-04-02 06:48:52 TRACE ReimbursementRepositoryJDBC:337 - 
+2018-04-02 06:50:49 TRACE ReimbursementRepositoryJDBC:235 - listing the stuff
+2018-04-02 06:50:49 INFO  ReimbursementRepositoryJDBC:263 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getTimestamp(GeneratedResultSet.java:1493)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:237)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:337)
+2018-04-02 06:50:49 TRACE ReimbursementRepositoryJDBC:337 - 
+2018-04-02 06:51:41 TRACE ReimbursementRepositoryJDBC:235 - listing the stuff: SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID) FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID) FULL JOIN USER_T U ON U.U_ID = R.EMPLOYEE_ID WHERE RS.RS_STATUS = 'PENDING' 
+2018-04-02 06:51:41 INFO  ReimbursementRepositoryJDBC:263 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getTimestamp(GeneratedResultSet.java:1493)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:237)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:337)
+2018-04-02 06:51:41 TRACE ReimbursementRepositoryJDBC:337 - 
+2018-04-02 06:57:15 TRACE ReimbursementRepositoryJDBC:235 - listing the stuff: SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID) FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID) FULL JOIN USER_T U ON U.U_ID = R.EMPLOYEE_ID WHERE RS.RS_STATUS = 'PENDING' 
+2018-04-02 06:57:15 INFO  ReimbursementRepositoryJDBC:261 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3965)
+	at oracle.jdbc.driver.InsensitiveScrollableResultSet.findColumn(InsensitiveScrollableResultSet.java:299)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:237)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:335)
+2018-04-02 06:57:15 TRACE ReimbursementRepositoryJDBC:335 - 
+2018-04-02 06:59:36 TRACE ReimbursementRepositoryJDBC:235 - listing the stuff: SELECT R.*, U.*, RS.RS_ID, RS.RS_STATUS, RT.RT_ID, RT.RT_TYPE FROM REIMBURSEMENT R FULL JOIN REIMBURSEMENT_TYPE RT ON (R.RT_ID = RT.RT_ID) FULL JOIN REIMBURSEMENT_STATUS RS ON (R.RS_ID=RS.RS_ID) FULL JOIN USER_T U ON U.U_ID = R.EMPLOYEE_ID WHERE RS.RS_STATUS = 'PENDING' 
+2018-04-02 06:59:36 INFO  ReimbursementRepositoryJDBC:261 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: ResultSet.next was not called
+	at oracle.jdbc.driver.GeneratedScrollableResultSet.getInt(GeneratedScrollableResultSet.java:514)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:237)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:335)
+2018-04-02 06:59:36 TRACE ReimbursementRepositoryJDBC:335 - 
+2018-04-02 07:08:49 INFO  ReimbursementRepositoryJDBC:255 - Exception selecting all Reimbursements that are Pending
+java.sql.SQLException: ResultSet.next was not called
+	at oracle.jdbc.driver.GeneratedScrollableResultSet.getInt(GeneratedScrollableResultSet.java:514)
+	at oracle.jdbc.driver.GeneratedResultSet.getInt(GeneratedResultSet.java:1350)
+	at com.revature.repository.ReimbursementRepositoryJDBC.selectAllPending(ReimbursementRepositoryJDBC.java:233)
+	at com.revature.repository.ReimbursementRepositoryJDBC.main(ReimbursementRepositoryJDBC.java:329)
+2018-04-02 07:08:49 TRACE ReimbursementRepositoryJDBC:329 - 
+2018-04-02 07:09:13 TRACE ReimbursementRepositoryJDBC:233 - result.next: 
+2018-04-02 07:09:13 TRACE ReimbursementRepositoryJDBC:251 - [Reimbursement [id=1, requested=2018-04-02T05:15:45.592, resolved=null, amount=10.0, description=ENHTUWARE                            , requester=Employee [id=42, firstName=Jack, lastName=Jill, username=JJ123, password=EEFF8EEE706C3C104F9AB13003428560, email=myth2486@gmail.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=null, status=ReimbursementStatus [id=1, status=PENDING], type=ReimbursementType [id=2, type=COURSE]]]
+2018-04-02 07:09:13 TRACE ReimbursementRepositoryJDBC:329 - [Reimbursement [id=1, requested=2018-04-02T05:15:45.592, resolved=null, amount=10.0, description=ENHTUWARE                            , requester=Employee [id=42, firstName=Jack, lastName=Jill, username=JJ123, password=EEFF8EEE706C3C104F9AB13003428560, email=myth2486@gmail.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=null, status=ReimbursementStatus [id=1, status=PENDING], type=ReimbursementType [id=2, type=COURSE]]]
+2018-04-02 07:09:48 TRACE ReimbursementRepositoryJDBC:251 - [Reimbursement [id=1, requested=2018-04-02T05:15:45.592, resolved=null, amount=10.0, description=ENHTUWARE                            , requester=Employee [id=42, firstName=Jack, lastName=Jill, username=JJ123, password=EEFF8EEE706C3C104F9AB13003428560, email=myth2486@gmail.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=null, status=ReimbursementStatus [id=1, status=PENDING], type=ReimbursementType [id=2, type=COURSE]]]
+2018-04-02 07:09:48 TRACE ReimbursementRepositoryJDBC:329 - [Reimbursement [id=1, requested=2018-04-02T05:15:45.592, resolved=null, amount=10.0, description=ENHTUWARE                            , requester=Employee [id=42, firstName=Jack, lastName=Jill, username=JJ123, password=EEFF8EEE706C3C104F9AB13003428560, email=myth2486@gmail.com, userRole=EmployeeRole [id=1, type=EMPLOYEE]], approver=null, status=ReimbursementStatus [id=1, status=PENDING], type=ReimbursementType [id=2, type=COURSE]]]

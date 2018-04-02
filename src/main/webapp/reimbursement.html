@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Employee Home</title>
+   <title>Reimbursement Request</title>
     
     <!--title icon-->
     <link rel="icon" href="image/customer.ico"/> 
-<!-- order below matters because they need the above script to run-->
+
    <!-- jQuery library -->
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,8 +17,11 @@
    <!-- Boostrap JS -->
 
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="css/style.css"/>
+
 </head>
+
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -30,8 +33,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Operations</strong><span class="caret"></span></a>
                     <ul class ="dropdown-menu">
                         <li><a href="getAll.do">List Reimbursements</a></li>
-                        <li><a href="submitRequest.do">Submit Reimbursement</a></li>
-                        <li><a href="updateEmployee.do">Update Employee</a></li>
+                        <li><a href="updateEmployee.do">Update Employee Information</a></li>
                     </ul>
                 </li> 
             </ul>
@@ -41,23 +43,39 @@
         </div>
     </nav>
     <div>
-        <div class ="col-md-4 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3>Employee Information</h3></div>
-                <table id="employee" class="table table-striped table-hover ">
-                    <tr>
-                        <th>Name</th>
-                        <th>Username</th> 
-                        <th>Email</th>
-                    </tr>
-                </table>
-                                   
-                <div class="panel-footer">
-                    
+                <div class="panel-heading">
+                    <h3>New Reimbursement</h3>
                 </div>
+                <div class="form-group">
+                    <input id="amount" name="amount" placeholder="Amount" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="description" name="description" placeholder="Description" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <h5>  Reimbursement Type: </h5>
+                    
+                    <select class="form-control" id="reimbursementTypeName" name="reimbursementTypeName">
+                        <option>OTHER</option>
+                        <option>COURSE</option>
+                        <option>CERTIFICATION</option>
+                        <option>TRAVELING</option>
+                    </select>
+                
+                </div>
+               
+                <div id="reimbursementMessage"></div>
+            
+                <button id="reimbursementButton" class="btn btn-md btn-primary btn-block">CREATE</button>
+             
+                <div class="panel-footer"></div>
             </div>
+        </div>
     </div>
    
-<script src="js/homeManager.js"></script>
+    <script src="js/reimbursement.js"></script>
+
 </body>
 </html>

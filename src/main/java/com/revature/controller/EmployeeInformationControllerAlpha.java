@@ -38,15 +38,7 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 //-------------------------------------------------------------------------------------------------------------------------------
 	@Override
 	public Object viewEmployeeInformation(HttpServletRequest request) {
-		/**
-		 * 1 will take the request and check to see if it is a logged employee
-		 * 
-		 * if it is null return login page 
-		 * 
-		 * else we pass to service the employee pojo 
-		 * return the model forward
-		 * 2 return specific employee data to front end will need to do this by calling the employee DAO
-		 */
+		
 		logger.trace("Within the EmpInfoController: " + request.getSession().getAttribute("loggedEmployee"));
 		Employee employee = (Employee) request.getSession().getAttribute("loggedEmployee");
 		
@@ -59,8 +51,12 @@ public class EmployeeInformationControllerAlpha implements EmployeeInformationCo
 
 	@Override
 	public Object viewAllEmployees(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(request.getSession().getAttribute("loggedEmployee")== null){
+			return "login.html";
+		}else {
+			return EmployeeServiceAlpha.getInstance().getAllEmployeesInformation();
+		}
 	}
 
 	@Override
